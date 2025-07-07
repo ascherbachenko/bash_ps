@@ -6,3 +6,4 @@ if [[ $string == *$understring* ]]; then
     echo "The String have the understring"
 else
     echo "The String haven't the understring"
+fi
