@@ -1,6 +1,6 @@
 #!/bin/bash
 
-for file in /var/var
+for file in /var/var/*
 do
     echo $file
 done
