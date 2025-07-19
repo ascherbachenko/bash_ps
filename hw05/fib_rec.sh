@@ -2,24 +2,28 @@
 
 fib() {
     local n=$1
-    local a=0
-    local b=1
-    for (( i=0; i<n; i++ )); do
-        if ((i <= 1)); then
-            echo -n "$i "
-        else
-            local next=$((a + b))
-            echo -n "$next "
-            a=$b
-            b=$next
-        fi
-    done
+    if (( n <= 1 )); then
+        echo $n
+    else
+        echo $(( $(fib $((n-1))) + $(fib $((n-2))) ))
+    fi
 }
 
-read -p "Input count: " n
+# Функция для вывода ряда Фибоначчи
+print_fibonacci() {
+    local n=$1
+    echo "Ряд Фибоначчи из $n чисел:"
+    for (( i=0; i<n; i++ )); do
+        echo -n "$(fib $i) "
+    done
+    echo
+}
+
+# Запрос ввода от пользователя
+read -p "Введите количество чисел Фибоначчи: " n
 
 if [ $n -le 3 ]; then
         echo "Number is wrong"
 else
-        fib $n
+        print_fibonacci $n
 fi
