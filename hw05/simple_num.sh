@@ -4,12 +4,15 @@ simple_num(){
     read -p "Input number: " number
 
     count=0
-
-    for (( del=2; del<10; del++ )); do
-        if (( $number % $del == 0 )) ; then
-            ((count++))
-        fi
-    done
+    if [ $numer -eq 1 ] || [ $numer -eq 2 ]; then
+        echo "Number $number simple"
+    else
+        for (( del=2; del<$number; del++ )); do
+            if (( $number % $del == 0 )) ; then
+                ((count++))
+            fi
+        done
+    fi
 
     if [ $count -gt 1 ]; then
         echo "Number $number not simple"
