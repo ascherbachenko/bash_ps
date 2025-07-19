@@ -1,28 +1,32 @@
 #!/bin/bash
 
-declare -a cache  # Кэш для чисел Фибоначчи
-
-# Рекурсивная функция с мемоизацией
+# Рекурсивная функция вычисления n-го числа Фибоначчи
 fib() {
-    if (( $1 <= 1 )); then
-        echo $1
+    local n=$1
+    if (( n <= 1 )); then
+        echo $n
     else
-        echo $(( $(fib $(($1-1))) + $(fib $(($1-2))) ))
+        echo $(( $(fib $((n-1))) + $(fib $((n-2))) ))
     fi
 }
 
-read -p "Input n: " count_num
-for i in $(seq 0 $count_num); do
-    fib $i
-done
- 
+# Функция для вывода ряда Фибоначчи
+print_fibonacci() {
+    local n=$1
+    echo "Ряд Фибоначчи из $n чисел:"
+    for (( i=0; i<n; i++ )); do
+        echo -n "$(fib $i) "
+    done
+    echo
+}
+
+# Запрос ввода от пользователя
+read -p "Введите количество чисел Фибоначчи: " n
+
 # Проверка ввода
-if [[ $# -eq 0 ]]; then
-    echo "Использование: $0 <количество чисел>"
+if ! [[ "$n" =~ ^[0-9]+$ ]] || (( n < 1 )); then
+    echo "Ошибка: введите целое число больше 0!"
     exit 1
 fi
 
-if ! [[ $1 =~ ^[0-9]+$ ]]; then
-    echo "Ошибка: введите целое число"
-    exit 1
-fi
+print_fibonacci "$n"
