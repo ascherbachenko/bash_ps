@@ -12,4 +12,4 @@ positiv(){
     fi
 }
 
-positive
+positiv
