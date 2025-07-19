@@ -11,6 +11,11 @@ fib() {
     fi
 }
 
+read -p "Input n: " count_num
+for i in $(seq 0 $count_num); do
+    fib $i
+done
+ 
 # Проверка ввода
 if [[ $# -eq 0 ]]; then
     echo "Использование: $0 <количество чисел>"
