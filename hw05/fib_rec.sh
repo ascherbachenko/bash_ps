@@ -29,4 +29,8 @@ if ! [[ "$n" =~ ^[0-9]+$ ]] || (( n < 1 )); then
     exit 1
 fi
 
-print_fibonacci "$n"
+if [ $n -lt 3 ]; then 
+    echo "Number is wrong"
+else
+    print_fibonacci "$n"
+fi
