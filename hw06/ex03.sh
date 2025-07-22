@@ -1,3 +1,3 @@
 #!/bin/bash
 
-while read line; do ((++i)); echo "line$i,$line,"; done < /etc/os-release | xargs -n 2 -d "," sh -c 'tr -cd "[:print]\n"; touch out/$1; echo out/$1 > $2'
+while read line; do ((++i)); echo "line$i,$line,"; done < /etc/os-release | xargs -n 2 -d "," sh -c 'filename=$(echo $0 | tr -cd "[:print]\n"); echo $1 > $filename'
